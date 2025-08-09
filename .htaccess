@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# Remove .php extension (optional)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)\.php$ $1 [R=301,L]
+
+# Rewrite view/slug to view.php?slug=slug
+RewriteRule ^view/([a-zA-Z0-9\-]+)$ view.php?slug=$1 [L,QSA]
+
+# Remove .php globally (optional)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
